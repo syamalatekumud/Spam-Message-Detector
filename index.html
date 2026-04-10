@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Spam Message Detector</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+            margin-top: 100px;
+            background-color: #f2f2f2;
+        }
+
+        input {
+            width: 350px;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin-top: 15px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        h2 {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>📩 Spam Message Detector</h1>
+
+    <input type="text" id="message" placeholder="Enter your message">
+    <br>
+    <button onclick="checkSpam()">Check</button>
+
+    <h2 id="result"></h2>
+
+    <script>
+        function checkSpam() {
+            let msg = document.getElementById("message").value.toLowerCase();
+
+            // Spam keywords
+            let spamWords = [
+                "win", "free", "offer", "money", "prize",
+                "click", "urgent", "lottery", "congratulations",
+                "claim", "reward"
+            ];
+
+            let isSpam = false;
+
+            for (let word of spamWords) {
+                if (msg.includes(word)) {
+                    isSpam = true;
+                    break;
+                }
+            }
+
+            let result = document.getElementById("result");
+
+            if (isSpam) {
+                result.innerHTML = "🚨 Spam Message";
+                result.style.color = "red";
+            } else {
+                result.innerHTML = "✅ Not Spam";
+                result.style.color = "green";
+            }
+        }
+    </script>
+
+</body>
+</html>
